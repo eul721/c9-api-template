@@ -1,0 +1,26 @@
+{
+    "mynewjsfunction": {
+        "lambda": {
+            "key1": "Hello",
+            "key2": "World"
+        }
+    },
+    "func": {
+        "lambda": {},
+        "apigateway": {
+            "path": "/helloworld",
+            "method": {
+                "value": "GET",
+                "items": [
+                    "GET",
+                    "POST",
+                    "PUT",
+                    "DELETE",
+                    "HEAD",
+                    "OPTIONS",
+                    "PATCH"
+                ]
+            }
+        }
+    }
+}

@@ -1,0 +1,30 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Transform: 'AWS::Serverless-2016-10-31'
+Description: An AWS Serverless Specification template describing your function.
+Resources:
+  func:
+    Type: 'AWS::Serverless::Function'
+    Properties:
+      Handler: func/index.handler
+      Runtime: nodejs6.10
+      Description: ''
+      MemorySize: 128
+      Timeout: 15
+      Role: 'arn:aws:iam::419539186404:role/lambda-role-hellademo'
+      Events:
+        LambdaMicroservice:
+          Type: Api
+          Properties:
+            Path: /helloworld
+            Method: ANY
+  funcPermissions:
+    Type: 'AWS::Lambda::Permission'
+    Properties:
+      Action: 'lambda:InvokeFunction'
+      FunctionName:
+        'Fn::GetAtt':
+          - testdonotdelete
+          - Arn
+      Principal: apigateway.amazonaws.com
+      SourceArn:
+        'Fn::Sub': 'arn:aws:execute-api:${AWS::Region}:${AWS::AccountId}:*/*/*/*'
